@@ -4,7 +4,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ArrowPathIcon } from '@heroicons/react/24/outline'
 // import { Dialog } from '@headlessui/react'
 // import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { listDataCollections, duplicateDataCollection } from "./server-function"
 import type { collections } from "@wix/data"
 
 const navigation: { name: string; href: string; }[] = []
@@ -32,7 +31,11 @@ export default function Example() {
   const getListDataCollections = async () => {
     try {
       setProcessing(true)
-      const c = await listDataCollections(userInfo)
+      const c = await fetch("/api/listDataCollections",
+        {
+          cache: "no-cache",
+          headers: { "x-wix-site-id": userInfo.siteId, "x-wix-api-key": userInfo.apiKey }
+        }).then(res => res.json());
       console.log(c)
       setListDataCollectionsResponse(c)
     } catch (error) {
@@ -46,7 +49,14 @@ export default function Example() {
     if (!dataCollectionId) return;
     try {
       setProcessing(true)
-      await duplicateDataCollection({ ...userInfo, dataCollectionId })
+
+      await fetch("/api/duplicateDataCollection", {
+        method: "POST",
+        cache: "no-cache",
+        headers: { "x-wix-site-id": userInfo.siteId, "x-wix-api-key": userInfo.apiKey },
+        body: JSON.stringify({ dataCollectionId })
+      }).then(res => res.json());
+
       await getListDataCollections()
       setProcessing(false)
       alert("Collection duplicated")
