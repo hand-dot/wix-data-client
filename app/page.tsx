@@ -235,35 +235,37 @@ export default function Example() {
 
 
             <ul role="list" className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {(listDataCollectionsResponse?.collections || []).map((collection) => (
-                <li key={collection._id} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
-                  <div className="flex w-full items-center justify-between space-x-6 p-6">
-                    <div className="flex-1 truncate">
-                      <div className="flex items-center space-x-3">
-                        <h3 className="truncate text-sm font-medium text-gray-900">{collection.displayName}</h3>
-                        <span className="inline-flex flex-shrink-0 items-center rounded-full bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                          {collection.collectionType}
-                        </span>
-                      </div>
-                      <p className="mt-1 truncate text-sm text-gray-500">{collection._id}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="-mt-px flex divide-x divide-gray-200">
-                      <div className="flex w-0 flex-1">
-                        <button
-                          onClick={() => duplicateCollection(collection._id)}
-                          className={`relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900 ${collection.collectionType !== 'NATIVE' ? 'cursor-not-allowed' : 'cursor-pointer'}`}
-                          disabled={collection.collectionType !== 'NATIVE'}
-                          title={collection.collectionType !== 'NATIVE' ? 'Only Native Collection can be duplicated' : ''}
-                        >
-                          Duplicate
-                        </button>
+              {(listDataCollectionsResponse?.collections || [])
+                .filter(c => c.collectionType === 'NATIVE')
+                .map((collection) => (
+                  <li key={collection._id} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+                    <div className="flex w-full items-center justify-between space-x-6 p-6">
+                      <div className="flex-1 truncate">
+                        <div className="flex items-center space-x-3">
+                          <h3 className="truncate text-sm font-medium text-gray-900">{collection.displayName}</h3>
+                          <span className="inline-flex flex-shrink-0 items-center rounded-full bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                            {collection.collectionType}
+                          </span>
+                        </div>
+                        <p className="mt-1 truncate text-sm text-gray-500">{collection._id}</p>
                       </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                    <div>
+                      <div className="-mt-px flex divide-x divide-gray-200">
+                        <div className="flex w-0 flex-1">
+                          <button
+                            onClick={() => duplicateCollection(collection._id)}
+                            className={`relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900 ${collection.collectionType !== 'NATIVE' ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                            disabled={collection.collectionType !== 'NATIVE'}
+                            title={collection.collectionType !== 'NATIVE' ? 'Only Native Collection can be duplicated' : ''}
+                          >
+                            Duplicate
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ))}
             </ul>
           </div>
 
