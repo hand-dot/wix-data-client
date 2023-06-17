@@ -563,7 +563,7 @@ ${listDataCollectionsResponse ? "- Table info\n" + JSON.stringify(getCollectionS
                   <div className="lg:max-w-lg">
                     <p className="text-base font-semibold leading-7 text-indigo-600">{'@velo/wix-data-sql-backend'}</p>
                     <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">SQL Endpoint</h2>
-                    <p className="mt-6 text-xl leading-8 text-gray-700">
+                    <p className="my-6 text-xl leading-8 text-gray-700">
                       {/*  */}
                       Please install the Velo Packages <a
                         className='underline text-blue-600 hover:text-blue-700'
@@ -584,7 +584,18 @@ ${listDataCollectionsResponse ? "- Table info\n" + JSON.stringify(getCollectionS
                         rel="noreferrer"
                       >
                         HTTP Functions</a> function.
+                    </p>
+                    <ReactEmbedGist gist="hand-dot/43d6c60b5e704ec01764caafa364a87c" />
 
+
+                    <p className="mt-6 text-xl leading-8 text-gray-700">
+                      After that, you can set the <span
+                        className='font-mono text-purple-600'
+                      >
+                        https://your.domain.com/_functions/sql
+                      </span> as SQL Endpoint.
+
+                      This endpoint will be used to execute SQL queries.
                     </p>
                     <p
                       className="mt-6 text-xl leading-8 text-red-700"
@@ -601,14 +612,6 @@ ${listDataCollectionsResponse ? "- Table info\n" + JSON.stringify(getCollectionS
                   src="https://github.com/hand-dot/wix-data-client/assets/24843808/e04cf359-df51-4897-98a9-05688932186a"
                   alt="post_sql"
                 />
-              </div>
-              <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-                <div className="lg:pr-4">
-                  <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
-                    <ReactEmbedGist gist="hand-dot/43d6c60b5e704ec01764caafa364a87c" />
-
-                  </div>
-                </div>
               </div>
             </div>
           </div>
