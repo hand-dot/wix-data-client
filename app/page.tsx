@@ -7,7 +7,6 @@ import { Parser } from 'node-sql-parser';
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ArrowPathIcon } from '@heroicons/react/24/outline'
-import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/react/20/solid'
 // import { Dialog } from '@headlessui/react'
 // import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { collections } from "@wix/data"
@@ -29,6 +28,7 @@ const copyTextToClipboard = (textVal: string): void => {
 const getCollectionStructures = (c: collections.ListDataCollectionsResponse) => {
   const collectionStructures = c.collections?.map((c) => ({
     tableName: c._id,
+    tableDisplayName: c.displayName,
     columns: c.fields?.map((f) => ({ name: f.key, type: f.type })),
   }))
   return collectionStructures;
