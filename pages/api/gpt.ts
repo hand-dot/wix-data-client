@@ -17,6 +17,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const chatCompletion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
+        temperature: 0,
         messages: [
             { role: "system", content: "This conversation is being conducted to create the optimal SQL statement." },
             { role: "system", content: `The assistant must not return anything other than an SQL statement. If there is a need to return something other than an SQL statement, please return "ERROR".` },
