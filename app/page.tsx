@@ -590,7 +590,7 @@ ${listDataCollectionsResponse ? "- Table info\n" + JSON.stringify(getCollectionS
 
                     <p className="mt-6 text-xl leading-8 text-gray-700">
                       After that, you can set the <span
-                        className='font-mono text-purple-600'
+                        className='font-mono text-purple-600 break-words'
                       >
                         https://your.domain.com/_functions/sql
                       </span> as SQL Endpoint.
